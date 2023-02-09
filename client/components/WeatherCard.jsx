@@ -3,7 +3,6 @@ import React from 'react'
 import moment from 'moment-timezone'
 
 const WeatherCard = ({data}) => {
-    console.log(data)
     const img = { uri: 'http://openweathermap.org/img/wn/'+data?.weather[0].icon+'@4x.png' }
     return (
         <View style={styles.weatherCardContainer}>
