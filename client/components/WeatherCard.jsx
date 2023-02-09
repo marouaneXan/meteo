@@ -1,16 +1,18 @@
 import { View, Text, Image, StyleSheet } from 'react-native'
 import React from 'react'
+import moment from 'moment-timezone'
 
-const WeatherCard = () => {
-    const img = { uri: 'http://openweathermap.org/img/wn/10d@2x.png' }
+const WeatherCard = ({data}) => {
+    console.log(data)
+    const img = { uri: 'http://openweathermap.org/img/wn/'+data?.weather[0].icon+'@4x.png' }
     return (
         <View style={styles.weatherCardContainer}>
-            <Image source={img} style={styles.image} />
+             <Image source={img} style={styles.image} />
             <View style={styles.otherContainer}>
-                <Text style={styles.day}>Sunday</Text>
-                <Text style={styles.temp}>Night - 28&#176;C</Text>
-                <Text>Day - 35&#176;C</Text>
-            </View>
+                <Text style={styles.day}>{moment(data?.dt*1000).format('dddd')}</Text>
+                <Text style={styles.temp}>Night - {data?.temp?.night}&#176;C</Text>
+                <Text>Day - {data.temp.day}&#176;C</Text>
+            </View> 
         </View>
     )
 }

@@ -6,7 +6,7 @@ import WeatherScoll from '../components/WeatherScoll'
 const API_KEY = '49cc8c821cd2aff9af04c9f98c36eb74';
 
 const Weathers = () => {
-    const [data, setData] = useState([])
+    const [data, setData] = useState()
     useEffect(() => {
         navigator.geolocation.getCurrentPosition((success) => {
             let { latitude, longitude } = success.coords
@@ -23,12 +23,11 @@ const Weathers = () => {
         }
 
     }
-    console.log(data)
     return (
         <View style={styles.container}>
             <ImageBackground style={styles.image} source={require('../images/weather.webp')}>
-                <DateTime current={data.current} lat={data.lat} lon={data.lon} timezone={data.timezone} />
-                <WeatherScoll />
+                <DateTime current={data?.current} lat={data?.lat} lon={data?.lon} timezone={data?.timezone} />
+                <WeatherScoll data={data?.daily} />
             </ImageBackground>
         </View>
     )
