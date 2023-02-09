@@ -24,7 +24,30 @@ const register = asyncHandler(async (req, res) => {
         password: hashedPassword
     });
     if (client) {
-        res.status(201).json(client);
+        res.status(201).json({
+            name: client.name,
+            message: 'Create account successfully'
+        });
+    } else {
+        res.status(400).json({
+            message: 'Invalid user data'
+        });
+    }
+});
+
+// @desc POST login
+// @route /api/login
+// access public
+const login = asyncHandler(async (req, res) => {
+    const { email, password } = req.body;
+
+    const client = await Client.findOne({ email });
+
+    if (client && (await bcrypt.compare(password, client.password))) {
+        res.json({
+            name: client.name,
+            message: 'User loged successfully'
+        });
     } else {
         res.status(400).json({
             message: 'Invalid user data'
@@ -33,5 +56,6 @@ const register = asyncHandler(async (req, res) => {
 });
 
 module.exports = {
-    register
+    register,
+    login
 };
