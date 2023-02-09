@@ -13,7 +13,7 @@ const WeatherScoll = ({ data }) => {
                 </>
             ) : (
                 <View>
-                    <Text>Loading...</Text>
+                    <Text style={styles.loading}>Loading...</Text>
                 </View>
             )}
         </ScrollView>
@@ -24,7 +24,13 @@ const styles = StyleSheet.create({
         flex: 0.4,
         backgroundColor: '#18181bcc',
         padding: 30,
-    }
+    },
+    loading: {
+        fontSize: 16,
+        color: 'white',
+        fontWeight: '100',
+        textAlign: 'center'
+      },
 })
 
 export default WeatherScoll

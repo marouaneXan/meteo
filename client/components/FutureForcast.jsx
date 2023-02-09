@@ -5,8 +5,8 @@ import moment from 'moment-timezone'
 const FutureForcast = ({ data }) => {
   return (
     <View style={{ flexDirection: 'row' }}>
-      {data.slice(1).map((item) => (
-        <FutureForcastItem key={item?.id} item={item} />
+      {data.slice(1).map((item,i) => (
+        <FutureForcastItem key={i} item={item} />
       ))}
     </View>
   )
@@ -19,7 +19,7 @@ const FutureForcastItem = ({ item }) => {
       <Text style={styles.day}>{moment(item?.dt * 1000).format('ddd')}</Text>
       <Image source={img} style={styles.image} />
       <Text style={styles.temp}>Night - {item?.temp?.night}&#176;C</Text>
-      <Text>Day - {item?.temp.day}&#176;C</Text>
+      <Text style={styles.temp}>Day - {item?.temp.day}&#176;C</Text>
     </View>
   )
 }
