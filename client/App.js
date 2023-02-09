@@ -9,7 +9,7 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name='Weather' component={Weathers}  />
+        <Stack.Screen name='Weather' component={Weathers} options={{ headerShown: false }}  />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -5,7 +5,7 @@ import WeatherItem from './WeatherItem'
 const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-const DateTime = () => {
+const DateTime = ({current,lat,lon,timezone}) => {
     const [date, setDate] = useState('')
     const [time, setTime] = useState('')
     useEffect (() => {
@@ -35,12 +35,15 @@ const DateTime = () => {
                 <Text style={styles.subHeading}>{date}</Text>
             </View>
             <View style={styles.weatherItemContainer}>
-                <WeatherItem/>
+                <WeatherItem title="humidity" unit='%' value={current ? current.humidity :''}/>
+                <WeatherItem title="pressure" unit='hPA' value={current ? current.pressure :''}/>
+                <WeatherItem title="sunrise" unit='am' value={current ? current.sunrise :''}/>
+                <WeatherItem title="sunset" unit='pm' value={current ? current.sunset :''}/>
             </View>
         </View>
         <View style={styles.rightAlign}>
-            <Text style={styles.timeZone}>Morocco/Safi</Text>
-            <Text style={styles.latLong}>4.22N 50</Text>
+            <Text style={styles.timeZone}>{timezone}</Text>
+            <Text style={styles.latLong}>{lat}N {lon}E</Text>
         </View>
     </View>
   )

@@ -1,11 +1,11 @@
 import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
 
-const WeatherItem = () => {
+const WeatherItem = ({title,value,unit}) => {
     return (
         <View style={styles.weatherItem}>
-            <Text style={styles.weatherItemTitle}>Safi</Text>
-            <Text style={styles.weatherItemTitle}>58%</Text>
+            <Text style={styles.weatherItemTitle}>{title}</Text>
+            <Text style={styles.weatherItemTitle}>{value}{unit}</Text>
         </View>
     )
 }
