@@ -1,8 +1,11 @@
-import React, { useState } from "react";
-import { View, ImageBackground, Text, StyleSheet, TextInput, TouchableOpacity, Button } from "react-native";
+import React, { useContext, useState } from "react";
+import { View, ImageBackground, Text, StyleSheet, TextInput, TouchableOpacity, Button, Alert } from "react-native";
 import Loading from "../components/loading";
+import { AuthContext } from "../context/auth";
 
 const RegisterPage = () => {
+  const { loading, register, success } = useContext(AuthContext)
+  const [error, setError] = useState(null)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -17,7 +20,13 @@ const RegisterPage = () => {
   }
 
   const onSubmit = () => {
-    console.log(formData)
+    if (!name || !email || !password) {
+      setError('Please fill al fields');
+      setTimeout(() => {
+        setError(null)
+      }, 2000)
+    }
+    else register(formData)
   }
 
   return (
@@ -26,29 +35,38 @@ const RegisterPage = () => {
       style={styles.background}
     >
       <View style={styles.container}>
+        {error && (
+          <View style={styles.errorView}>
+            <Text style={styles.errorText}>{error}</Text>
+          </View>
+        )}
+        {success && (
+          <View style={styles.successView}>
+            <Text style={styles.successText}>{success}</Text>
+          </View>
+        )}
         <Text style={styles.title}>Register</Text>
         <TextInput
           style={styles.input}
           placeholder="Name"
-           onChangeText={(text) => onChange("name", text)}
+          onChangeText={(text) => onChange("name", text)}
           value={name}
         />
         <TextInput
           style={styles.input}
           placeholder="Email"
-           onChangeText={(text) => onChange("email", text)}
+          onChangeText={(text) => onChange("email", text)}
           value={email}
         />
         <TextInput
           style={styles.input}
           placeholder="Password"
           secureTextEntry={true}
-           onChangeText={(text) => onChange("password", text)}
+          onChangeText={(text) => onChange("password", text)}
           value={password}
         />
-        <Loading/>
         <TouchableOpacity style={styles.button}>
-          <Button style={styles.buttonText} title='Register' onPress={onSubmit} />
+          <Button style={styles.buttonText} title={loading ? <Loading /> : 'Register'} onPress={onSubmit} />
         </TouchableOpacity>
         <TouchableOpacity style={styles.button}>
           <Text style={styles.buttonText}>Login</Text>
@@ -96,6 +114,24 @@ const styles = StyleSheet.create({
     color: "#fff",
     alignSelf: "center",
   },
+  errorView: {
+    padding: 10,
+    backgroundColor: 'rgba(255, 0, 0, 0.4);',
+    borderRadius: 6
+  },
+  errorText: {
+    color: 'white',
+    textAlign: 'center'
+  },
+  successView: {
+    padding: 10,
+    backgroundColor: 'rgba(0, 255, 0, 0.4);',
+    borderRadius: 6
+  },
+  successText: {
+    color: 'white',
+    textAlign: 'center'
+  }
 });
 
 export default RegisterPage;
