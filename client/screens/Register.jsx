@@ -68,7 +68,7 @@ const RegisterPage = () => {
           value={password}
         />
         <TouchableOpacity style={styles.button}>
-          <Button style={styles.buttonText} title={loading ? <Loading /> : 'Register'} onPress={onSubmit} />
+          {loading ? <Loading /> : <Button style={styles.buttonText} title='Register' onPress={onSubmit} />}
         </TouchableOpacity>
         <TouchableOpacity style={styles.button}>
           <Text style={styles.buttonText}>Login</Text>
@@ -83,11 +83,13 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    padding: 20
   },
   container: {
     backgroundColor: "rgba(255, 255, 255, 0.6)",
     padding: 20,
     borderRadius: 10,
+    width: '100%'
   },
   title: {
     fontSize: 24,

@@ -14,7 +14,7 @@ const RootStack=({navigation})=>{
             if (name) {
                 setIsAuthorized(true);
             } else {
-                navigation.navigate('Register');
+                navigation?.navigate('Register');
             }
         };
         checkAuthorization();
