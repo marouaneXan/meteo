@@ -69,7 +69,3 @@
 </p>
 <h2>Author</h2>
 <a href="https://github.com/marouaneXan">Marouane</a>
-<h2>License</h2>
-<p>
-    This project is licensed under the [LICENSE_NAME] license - see the <a href="LICENSE.md">LICENSE.md</a> file for details.
-</p>
