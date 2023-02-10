@@ -7,12 +7,15 @@ export const AuthContext = createContext();
 export const AuthContextProvider = ({ children }) => {
     const [loading, setLoading] = useState(false)
     const [success, setSuccess] = useState(null)
-    const register = async (data) => {
+    const register = async (data,navigation) => {
         setLoading(true)
         const res = await axios.post(Proxy+'register', data)
         if (res && res.data) {
             setLoading(false)
             setSuccess(res.data.message)
+            setTimeout(()=>{
+                navigation.navigate('Weather')
+            },2000)
         }
     }
 
