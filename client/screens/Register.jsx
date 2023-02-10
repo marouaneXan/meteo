@@ -5,7 +5,7 @@ import { AuthContext } from "../context/auth";
 import { useNavigation } from '@react-navigation/native';
 
 const RegisterPage = () => {
-  const navigation=useNavigation()
+  const navigation = useNavigation()
   const { loading, register, success } = useContext(AuthContext)
   const [error, setError] = useState(null)
   const [formData, setFormData] = useState({
@@ -28,7 +28,7 @@ const RegisterPage = () => {
         setError(null)
       }, 2000)
     }
-    else register(formData,navigation)
+    else register(formData, navigation)
   }
 
   return (
